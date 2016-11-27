@@ -7,51 +7,67 @@
 	console.log("web3 create");
 }
 web3.eth.defaultAccount = web3.eth.accounts[0];
-var abi = 
-[ { "constant": false, "inputs": [ { "name": "cid", "type": "string" }, { "name": "b", "type": "string" } ], "name": "addBrokerRequest", "outputs": [ { "name": "", "type": "uint256" } ], "payable": false, "type": "function" }, { "constant": false, "inputs": [ { "name": "cid", "type": "string" } ], "name": "getBrokerRequest", "outputs": [ { "name": "", "type": "string" } ], "payable": false, "type": "function" }, { "constant": false, "inputs": [ { "name": "cid", "type": "string" }, { "name": "nme", "type": "string" }, { "name": "lUpdateDate", "type": "uint256" }, { "name": "a", "type": "string" }, { "name": "b", "type": "string" } ], "name": "add", "outputs": [ { "name": "", "type": "uint256" } ], "payable": false, "type": "function" }, { "constant": false, "inputs": [ { "name": "cid", "type": "string" }, { "name": "nme", "type": "string" }, { "name": "lUpdateDate", "type": "uint256" }, { "name": "a", "type": "string" }, { "name": "b", "type": "string" } ], "name": "update", "outputs": [ { "name": "", "type": "uint256" } ], "payable": false, "type": "function" }, { "constant": false, "inputs": [ { "name": "cid", "type": "string" }, { "name": "b", "type": "string" } ], "name": "updateBrokers", "outputs": [ { "name": "", "type": "uint256" } ], "payable": false, "type": "function" }, { "constant": false, "inputs": [ { "name": "cid", "type": "string" } ], "name": "findByCID", "outputs": [ { "name": "returnCID", "type": "string" }, { "name": "returnName", "type": "string" }, { "name": "lastUpdateDate", "type": "uint256" }, { "name": "returnAnswers", "type": "string" }, { "name": "returnBrokers", "type": "string" } ], "payable": false, "type": "function" }, { "anonymous": false, "inputs": [ { "indexed": false, "name": "s", "type": "string" } ], "name": "print_log", "type": "event" } ];
-var address = '0xd8045Ea943960b4c57748fF1788b375A29BbAB79';
+var abi = [ { "constant": false, "inputs": [ { "name": "cid", "type": "string" }, { "name": "b", "type": "string" } ], "name": "addBrokerRequest", "outputs": [ { "name": "", "type": "uint256" } ], "payable": false, "type": "function" }, { "constant": false, "inputs": [ { "name": "cid", "type": "string" } ], "name": "getBrokerRequest", "outputs": [ { "name": "", "type": "string" } ], "payable": false, "type": "function" }, { "constant": false, "inputs": [ { "name": "cid", "type": "string" }, { "name": "nme", "type": "string" }, { "name": "lUpdateDate", "type": "uint256" }, { "name": "a", "type": "string" }, { "name": "b", "type": "string" } ], "name": "add", "outputs": [ { "name": "", "type": "uint256" } ], "payable": false, "type": "function" }, { "constant": false, "inputs": [ { "name": "cid", "type": "string" }, { "name": "nme", "type": "string" }, { "name": "lUpdateDate", "type": "uint256" }, { "name": "a", "type": "string" }, { "name": "b", "type": "string" } ], "name": "update", "outputs": [ { "name": "", "type": "uint256" } ], "payable": false, "type": "function" }, { "constant": false, "inputs": [ { "name": "cid", "type": "string" }, { "name": "brk", "type": "string" }, { "name": "brkRequest", "type": "string" } ], "name": "updateBrokers", "outputs": [ { "name": "", "type": "uint256" } ], "payable": false, "type": "function" }, { "constant": false, "inputs": [ { "name": "cid", "type": "string" } ], "name": "findByCID", "outputs": [ { "name": "returnCID", "type": "string" }, { "name": "returnName", "type": "string" }, { "name": "lastUpdateDate", "type": "uint256" }, { "name": "returnAnswers", "type": "string" }, { "name": "returnBrokers", "type": "string" } ], "payable": false, "type": "function" }, { "anonymous": false, "inputs": [ { "indexed": false, "name": "s", "type": "string" } ], "name": "print_log", "type": "event" } ];
+var address = '0x7a3881aba4416c31689aF1980819F465ccb29578';
 
 // creation of contract object
 var KYC = web3.eth.contract(abi);
 // initiate contract for an address
 var kycInstance = KYC.at(address); 
 
+/*var filter = web3.eth.filter('latest');
+
+	filter.watch(function(error, result){
+	  if (error) return;
+	  
+	  var block = web3.eth.getBlock(result, true);
+	  console.log('block #' + block.number);
+	  console.log("transaction : "+block.transactions);
+	  
+	  if(block != null){
+		filter.stopWatching();
+	  }
+
+ 
+	});*/
+
 var choices = ['มากที่สุด','มาก','ปานกลาง','น้อย','น้อยที่สุด'];
 var brokerList = ['Broker A','Broker B','Broker C','Broker D','Broker E'];
-
-
-/*kycInstance.setIntTemp(1111);
-kycInstance.getIntTemp.call(function(err,value){
-	console.log("(int) get value = "+value);
-});
-
-kycInstance.setTemp(2222,"ning");
-kycInstance.getTemp.call(function(err,value){
-	console.log("(int, string) get value = "+value);
-});
-
-kycInstance.setIntTemp2(3333,1234);
-kycInstance.getIntTemp2.call(function(err,value){
-	console.log("(int,int) get value = "+value);
-});
-
-kycInstance.setTemp2(4444,"array",[new BigNumber("122"), new BigNumber("44")]);
-kycInstance.getTemp2.call(function(err,value){
-	console.log("(int, string, arr) get value = "+value);
-});*/
-
-addKYCForm("0000","ning",20161127,"1,5","2");
-//getKYCForm("123456");
-//getKYCForm("789");
+var timestamp =  new Date().getTime();
+console.log("timestamp : "+timestamp);
+addKYCForm("ningadd5","ning", timestamp,"1|5","2");
 
 function addKYCForm(cid, name, lastupdate, arr1, arr2){
-	kycInstance.add.call(cid, name, lastupdate, arr1, arr2, {gas:500000},function(error,value){
+	var transactionId = kycInstance.add(cid, name, lastupdate, arr1, arr2, {gas:700000});
+	console.log("transactionId = "+transactionId);
+	filter();
+	/*kycInstance.add.call(cid, name, lastupdate, arr1, arr2, {gas:700000},function(error,value){
 		if(!error){
 			console.log("addKYCForm() | value : "+value);
 		}else{
 			console.log("addKYCForm() | error");
 		}
+	});*/
+}
+
+function filter(){
+	var filter = web3.eth.filter('latest');
+
+	filter.watch(function(error, result){
+	  if (error) return;
+	  
+	  var block = web3.eth.getBlock(result, true);
+	  console.log('block #' + block.number);
+	  console.log("transaction : "+block.transactions);
+	  
+	  if(block != null){
+		console.log("block success : "+block.number)
+		filter.stopWatching();
+	  }
+
+ 
 	});
+	
 }
 
 
@@ -109,10 +125,7 @@ function renderKYCForm(arrResult){
 		var brokerAns = brokers.toString().split("|");
 		console.log("brokers = "+brokers);
 		for(var i =0; i< brokerAns.length ; i++){
-			if(brokerAns[i] < brokerList.length){
-				var b = brokerList[brokerAns[i]-1];
-				brokersHtml = brokersHtml + '<li>'+b+'</li>';
-			}
+			brokersHtml = brokersHtml + '<li>'+brokerAns[i]+'</li>';			
 		}
 	}
 	
